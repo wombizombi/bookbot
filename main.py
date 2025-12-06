@@ -1,6 +1,8 @@
+import sys
 from stats import word_count
 from stats import char_count
 from stats import sorted_list_of_dictionaries
+
 
 def get_book_text(path_to_file):
     with open(path_to_file) as f:
@@ -11,9 +13,14 @@ def sort_on(items):
     return items["num"]
 
 def main():
-
-    path = "books/frankenstein.txt"
+    path = ""
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    else:
+        path = sys.argv[1]
     book = get_book_text(path)
+    
     total_num_of_words = word_count(book)
 
     print("============ BOOKBOT ============")
